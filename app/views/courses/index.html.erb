@@ -1,5 +1,5 @@
 <h1 class="text-4xl my-3">Lista kursów</h1>
-
+<%= link_to "Dodaj nowy kurs", new_course_path, class: "btn btn-primary mb-3" %>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
   <%= render @courses %>
 </div>

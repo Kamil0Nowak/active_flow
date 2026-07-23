@@ -7,4 +7,6 @@ class User < ApplicationRecord
   enum :role, { user: 0, teacher: 1, admin: 2 }
 
   validates :role, :first_name, :last_name, presence: true
+
+  has_many :courses, foreign_key: :teacher_id
 end
