@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  teacher: one
+  start_date: 2026-07-23
+  end_date: 2026-07-23
+  capacity: 1
+  status: 1
+
+two:
+  title: MyString
+  description: MyString
+  teacher: two
+  start_date: 2026-07-23
+  end_date: 2026-07-23
+  capacity: 1
+  status: 1
