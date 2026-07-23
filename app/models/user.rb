@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   enum :role, { user: 0, teacher: 1, admin: 2 }
 
-  validates :role, presence: true
+  validates :role, :first_name, :last_name, presence: true
 end
