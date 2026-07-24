@@ -1,3 +1,4 @@
+<%= link_to "Dodaj lekcję", new_course_lesson_path(@course), class: "btn btn-primary mt-3", data: { turbo_frame: "new_lesson"  } %>
 
 <div class="card bg-base-200 p-8 mt-8">
   <h1 class="text-4xl font-semibold card-title"><%= @course.title %></h1>
@@ -15,6 +16,8 @@
                   method: :delete, data: { turbo_confirm: "Are you sure?" },
                   class: "btn btn-warning" if policy(@course).destroy?%>
   </div>
+  <turbo-frame id="new_lesson">
+  </turbo-frame>
 </div>
 
 <div class="card bg-base-200 p-8 my-8">
@@ -31,4 +34,5 @@
           <p class="p-4">Godzina: <%= lesson.start_time.strftime("%H:%M") %> : <%= lesson.end_time.strftime("%H:%M") %></p>
       <% end %>
     </ul>
+
 </div>
