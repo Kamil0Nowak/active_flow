@@ -18,12 +18,17 @@
 </div>
 
 <div class="card bg-base-200 p-8 my-8">
-  <section>
-    <h2>Lekcje</h2>
-    <p>Tu będą lekcje</p>
-  </section>
-  <section>
-    <h2>Zapisy</h2>
-    <p>Tu będą zapisy</p>
-  </section>
+    <h2 class="text-2xl font-semibold">Lekcje</h2>
+    <ul class="list rounded-box shadow-lg max-w-sm bg-base-300 my-3 spacing-y-2">
+      <% @course.lessons.each do |lesson| %>
+        <li class="list-row items-center">
+            <p><%= lesson.title %></p>
+            <small>
+              <%= lesson.description %>
+            </small>
+          <%= button_to "Zapisz się", '#', class: "btn btn-primary" %>
+        </li>
+          <p class="p-4">Godzina: <%= lesson.start_time.strftime("%H:%M") %> : <%= lesson.end_time.strftime("%H:%M") %></p>
+      <% end %>
+    </ul>
 </div>

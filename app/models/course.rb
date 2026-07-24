@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   belongs_to :teacher, class_name: "User"
+  has_many :lessons, dependent: :destroy
 
   enum :status, { draft: 0, published: 1 }
 
