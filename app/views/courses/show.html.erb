@@ -1,4 +1,7 @@
-<%= link_to "Dodaj lekcję", new_course_lesson_path(@course), class: "btn btn-primary mt-3", data: { turbo_frame: "new_lesson"  } %>
+<%= link_to "Dodaj lekcję",
+            new_course_lesson_path(@course),
+            class: "btn btn-primary mt-3",
+            data: { turbo_frame: "new_lesson" } if policy(@course).new?%>
 
 <div class="card bg-base-200 p-8 mt-8">
   <h1 class="text-4xl font-semibold card-title"><%= @course.title %></h1>
@@ -21,18 +24,23 @@
 </div>
 
 <div class="card bg-base-200 p-8 my-8">
-    <h2 class="text-2xl font-semibold">Lekcje</h2>
-    <ul class="list rounded-box shadow-lg max-w-sm bg-base-300 my-3 spacing-y-2">
-      <% @course.lessons.each do |lesson| %>
-        <li class="list-row items-center">
+    <% if @course.lessons.empty? %>
+      <p class="text-center text-2xl">Brak lekcji</p>
+    <% else %>
+      <h2 class="text-2xl font-semibold">Lekcje</h2>
+      <ul class="list rounded-box shadow-lg max-w-sm bg-base-300 my-3 spacing-y-2">
+        <% @course.lessons.each do |lesson| %>
+          <li class="list-row items-center">
             <p><%= lesson.title %></p>
             <small>
               <%= lesson.description %>
             </small>
-          <%= button_to "Zapisz się", '#', class: "btn btn-primary" %>
-        </li>
+            <%= button_to "Zapisz się", '#', class: "btn btn-primary" %>
+          </li>
           <p class="p-4">Godzina: <%= lesson.start_time.strftime("%H:%M") %> : <%= lesson.end_time.strftime("%H:%M") %></p>
       <% end %>
     </ul>
+  <% end %>
+
 
 </div>

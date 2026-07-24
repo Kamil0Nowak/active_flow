@@ -2,11 +2,13 @@ class LessonsController < ApplicationController
   def new
     @course = Course.find(params[:course_id])
     @lesson = @course.lessons.build
+    authorize @lesson
   end
 
   def create
     @course = Course.find(params[:course_id])
     @lesson = @course.lessons.build(lesson_params)
+    authorize @lesson
     if @lesson.save
       redirect_to course_path(@course), notice: "Lesson was successfully created."
     else
