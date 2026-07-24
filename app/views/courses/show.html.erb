@@ -3,7 +3,7 @@
             class: "btn btn-primary mt-3",
             data: { turbo_frame: "new_lesson" } if policy(@course).new?%>
 
-<div class="card bg-base-200 p-8 mt-8">
+<div class="card bg-base-200 p-8 mt-8 mx-auto">
   <h1 class="text-4xl font-semibold card-title"><%= @course.title %></h1>
   <div class="card-body">
     <p><span class="font-semibold"> Opis: </span> <%= @course.description %></p>

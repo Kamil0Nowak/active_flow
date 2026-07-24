@@ -5,7 +5,7 @@
   <div class="flex-none">
     <% if user_signed_in? %>
     <div class="flex items-center gap-3">
-      <small class="text-sm">
+      <small class="text-sm hidden md:block">
         <span class="text-gray-600">(<%= current_user.role %>)</span>
         <%= current_user.email %>
       </small>
