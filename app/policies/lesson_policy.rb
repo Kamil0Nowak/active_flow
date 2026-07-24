@@ -6,4 +6,8 @@ class LessonPolicy < ApplicationPolicy
   def new?
     create?
   end
+
+  def edit?
+    user.present? && (user == record.course.teacher || user.admin?)
+  end
 end

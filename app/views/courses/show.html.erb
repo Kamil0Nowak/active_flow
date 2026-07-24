@@ -28,14 +28,15 @@
       <p class="text-center text-2xl">Brak lekcji</p>
     <% else %>
       <h2 class="text-2xl font-semibold">Lekcje</h2>
-      <ul class="list rounded-box shadow-lg max-w-sm bg-base-300 my-3 spacing-y-2">
+      <ul class="list rounded-box shadow-lg max-w-sm bg-base-300 my-3 spacing-y-2 max-h-96 overflow-y-scroll">
         <% @course.lessons.each do |lesson| %>
           <li class="list-row items-center">
             <p><%= lesson.title %></p>
             <small>
               <%= lesson.description %>
             </small>
-            <%= button_to "Zapisz się", '#', class: "btn btn-primary" %>
+            <%= button_to "Zapisz się", '#', class: "btn btn-primary" if current_user.student? %>
+            <%= button_to "Edytuj", '#', class: "btn btn-secondary" if policy(lesson).edit? %>
           </li>
           <p class="p-4">Godzina: <%= lesson.start_time.strftime("%H:%M") %> : <%= lesson.end_time.strftime("%H:%M") %></p>
       <% end %>
