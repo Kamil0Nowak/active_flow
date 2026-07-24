@@ -9,4 +9,8 @@ class User < ApplicationRecord
   validates :role, :first_name, :last_name, presence: true
 
   has_many :courses, foreign_key: :teacher_id
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

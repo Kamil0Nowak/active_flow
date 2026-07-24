@@ -1,0 +1,21 @@
+<nav class="navbar bg-base-300 shadow-lg px-8">
+  <div class="flex-1">
+   <%= link_to "ActiveFlow", root_path, class: "btn btn-ghost normal-case text-xl" %>
+  </div>
+  <div class="flex-none">
+    <% if user_signed_in? %>
+    <div class="flex items-center gap-3">
+      <small class="text-sm">
+        <span class="text-gray-600">(<%= current_user.role %>)</span>
+        <%= current_user.email %>
+      </small>
+      <%= link_to "New course", new_course_path, class: "btn btn-primary btn-sm" if policy(Course).new? %>
+      <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-error btn-outline btn-sm" %>
+      <%#= link_to "Profile", edit_user_registration_path, class: "btn btn-primary btn-sm" %>
+    </div>
+    <% else %>
+      <%= link_to "Log in", new_user_session_path, class: "btn btn-primary btn-sm" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-outline btn-sm" %>
+    <% end %>
+  </div>
+</nav>

@@ -24,6 +24,28 @@ class CoursesController < ApplicationController
     end
   end
 
+  def edit
+    @course = Course.find(params[:id])
+    authorize @course
+  end
+
+  def update
+    @course = Course.find(params[:id])
+    authorize @course
+    if @course.update(course_params)
+      redirect_to courses_path, notice: "Course was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @course = Course.find(params[:id])
+    authorize @course
+    @course.destroy
+    redirect_to courses_path, notice: "Course was successfully destroyed."
+  end
+
   private
   def course_params
     params.require(:course).permit(:title, :description, :start_date, :end_date, :capacity)

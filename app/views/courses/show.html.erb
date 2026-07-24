@@ -1,3 +1,29 @@
-<h1>Szczegóły kursu</h1>
-<p>Tu będą szczegóły</p>
-<%= link_to "Wróć do listy", courses_path %>
+
+<div class="card bg-base-200 p-8 mt-8">
+  <h1 class="text-4xl font-semibold card-title"><%= @course.title %></h1>
+  <div class="card-body">
+    <p><span class="font-semibold"> Opis: </span> <%= @course.description %></p>
+    <p><span class="font-semibold"> Ilość miejsc: </span> <%= @course.capacity %></p>
+    <p><span class="font-semibold"> Nauczyciel: </span> <%= @course.teacher.full_name %></p>
+    <p><span class="font-semibold"> Kurs w dniach: </span> <%= @course.start_date %> &bull; <%= @course.end_date %></p>
+  </div>
+  <div class="join self-center">
+    <%= link_to "Edytuj", edit_course_path(@course), class: "btn btn-primary" if policy(@course).edit?%>
+    <%= link_to "Wróć do listy", courses_path, class: "btn btn-secondary" %>
+    <%= button_to "Usuń",
+                  course_path(@course),
+                  method: :delete, data: { turbo_confirm: "Are you sure?" },
+                  class: "btn btn-warning" if policy(@course).destroy?%>
+  </div>
+</div>
+
+<div class="card bg-base-200 p-8 my-8">
+  <section>
+    <h2>Lekcje</h2>
+    <p>Tu będą lekcje</p>
+  </section>
+  <section>
+    <h2>Zapisy</h2>
+    <p>Tu będą zapisy</p>
+  </section>
+</div>
