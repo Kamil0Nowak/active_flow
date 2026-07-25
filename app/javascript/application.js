@@ -2,7 +2,7 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 
-Turbo.setConfirmMethod((message, element) => {
+Turbo.config.forms.confirm = (message, element) => {
     const dialog = document.getElementById("turbo-confirm")
     const messageEl = document.getElementById("turbo-confirm-message")
 
@@ -15,4 +15,4 @@ Turbo.setConfirmMethod((message, element) => {
     return new Promise((resolve) => {
         dialog.addEventListener("close", () => resolve(dialog.returnValue === "confirm"))
     }, { once: true } )
-})
+}
