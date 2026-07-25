@@ -23,22 +23,32 @@
   </turbo-frame>
 </div>
 
-<div class="card bg-base-200 p-8 my-8">
+<div class="card bg-base-200 p-8 my-8 w-3/5">
     <% if @course.lessons.empty? %>
       <p class="text-center text-2xl">Brak lekcji</p>
     <% else %>
       <h2 class="text-2xl font-semibold">Lekcje</h2>
-      <ul class="list rounded-box shadow-lg max-w-sm bg-base-300 my-3 spacing-y-2 max-h-96 overflow-y-scroll">
+      <ul class="list rounded-box shadow-lg max-w-lg bg-base-300 my-3 spacing-y-2 max-h-96 overflow-y-scroll">
         <% @course.lessons.each do |lesson| %>
-          <li class="list-row items-center">
-            <p><%= lesson.title %></p>
-            <small>
-              <%= lesson.description %>
-            </small>
-            <%= button_to "Zapisz się", '#', class: "btn btn-primary" if current_user.student? %>
-            <%= button_to "Edytuj", '#', class: "btn btn-secondary" if policy(lesson).edit? %>
+          <li class="list-row items-center w-full flex flex-col">
+            <div class="flex items-center justify-between w-full">
+              <div class="flex items-center gap-3">
+                <p><%= lesson.title %></p>
+                <small>
+                  <%= lesson.description %>
+                </small>
+              </div>
+              <div class="flex gap-3">
+                <%= button_to "Zapisz się", '#', class: "btn btn-primary" if current_user.student? %>
+                <%#= button_to "Edytuj", '#', class: "btn btn-secondary" if policy(lesson).edit? %>
+                <%= link_to "Edytuj",
+                            edit_course_lesson_path(@course, lesson),
+                            data: { turbo_frame: "new_lesson" },
+                            class: "btn btn-primary" if policy(lesson).edit? %>
+              </div>
+            </div>
+            <p class="p-4">Godzina: <%= lesson.start_time.strftime("%H:%M") %> : <%= lesson.end_time.strftime("%H:%M") %></p>
           </li>
-          <p class="p-4">Godzina: <%= lesson.start_time.strftime("%H:%M") %> : <%= lesson.end_time.strftime("%H:%M") %></p>
       <% end %>
     </ul>
   <% end %>

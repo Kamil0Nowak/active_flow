@@ -16,6 +16,25 @@ class LessonsController < ApplicationController
     end
   end
 
+  def edit
+    @course = Course.find(params[:course_id])
+    @lesson = @course.lessons.find(params[:id])
+    authorize @lesson
+  end
+
+  def update
+    @course = Course.find(params[:course_id])
+    @lesson = @course.lessons.find(params[:id])
+    authorize @lesson
+
+    if @lesson.update(lesson_params)
+      redirect_to course_path(@course), notice: "Lesson was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+
+  end
+
   private
   def lesson_params
     params.require(:lesson).permit(:title, :description, :start_time, :end_time)
