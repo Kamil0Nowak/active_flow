@@ -28,7 +28,7 @@
       <p class="text-center text-2xl">Brak lekcji</p>
     <% else %>
       <h2 class="text-2xl font-semibold">Lekcje</h2>
-      <ul class="list rounded-box shadow-lg max-w-lg bg-base-300 my-3 spacing-y-2 max-h-96 overflow-y-scroll">
+      <ul class="list rounded-box shadow-lg max-w-lg bg-base-300 my-3 space-y-2 max-h-96 overflow-y-scroll">
         <% @course.lessons.each do |lesson| %>
           <li class="list-row items-center w-full flex flex-col">
             <div class="flex items-center justify-between w-full">

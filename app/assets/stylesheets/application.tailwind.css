@@ -3,3 +3,22 @@
     themes: sunset;
 }
 
+.pagination {
+    @apply flex justify-center gap-2 my-4;
+}
+
+.pagination a {
+    @apply btn btn-sm btn-outline no-underline;
+}
+
+.pagination .current {
+    @apply btn btn-sm btn-primary;
+}
+
+.pagination .disabled {
+    @apply btn btn-ghost btn-sm btn-disabled;
+}
+
+.pagination .gap {
+    @apply btn btn-ghost btn-sm btn-disabled;
+}
