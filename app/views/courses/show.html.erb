@@ -40,7 +40,11 @@
               </div>
               <div class="flex gap-3">
                 <%= button_to "Zapisz się", '#', class: "btn btn-primary" if current_user.student? %>
-                <%#= button_to "Edytuj", '#', class: "btn btn-secondary" if policy(lesson).edit? %>
+                <%= button_to "Usuń",
+                              course_lesson_path(@course, lesson),
+                              method: :delete,
+                              data: { turbo_confirm: "Are you sure?" },
+                              class: "btn btn-secondary" if policy(lesson).destroy? %>
                 <%= link_to "Edytuj",
                             edit_course_lesson_path(@course, lesson),
                             data: { turbo_frame: "new_lesson" },
