@@ -10,4 +10,12 @@ class LessonPolicy < ApplicationPolicy
   def edit?
     user.present? && (user == record.course.teacher || user.admin?)
   end
+
+  def update?
+    edit?
+  end
+
+  def destroy?
+    update?
+  end
 end
