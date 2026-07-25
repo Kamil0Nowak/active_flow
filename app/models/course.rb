@@ -8,6 +8,10 @@ class Course < ApplicationRecord
   validates :capacity, numericality: { greater_than: 0 }
   validate :end_date_after_start_date
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["title"]
+  end
+
   private
 
   def end_date_after_start_date
