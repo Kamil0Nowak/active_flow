@@ -3,7 +3,7 @@
             class: "btn btn-primary mt-3",
             data: { turbo_frame: "new_lesson" } if policy(@course).new?%>
 <% if policy(@course).manage_enrollments? %>
-  <%= link_to "Zarządzaj zapisami", manage_enrollments_course_path(@course), class: "btn btn-ghost" %>
+  <%= link_to "Zarządzaj zapisami", manage_enrollments_course_path(@course), class: "btn btn-secondary mt-3" %>
 <% end %>
 <div class="card bg-base-200 p-8 mt-8 mx-auto">
   <h1 class="text-4xl font-semibold card-title"><%= @course.title %></h1>
@@ -26,12 +26,12 @@
 </div>
 
 <div class="card bg-base-200 p-8 my-8 w-3/5">
-    <% if @course.lessons.empty? %>
+    <% if @lessons.empty? %>
       <p class="text-center text-2xl">Brak lekcji</p>
     <% else %>
       <h2 class="text-2xl font-semibold">Lekcje</h2>
       <ul class="list rounded-box shadow-lg max-w-lg bg-base-300 my-3 space-y-2 max-h-96 overflow-y-scroll">
-        <% @course.lessons.each do |lesson| %>
+        <% @lessons.each do |lesson| %>
           <li class="list-row items-center w-full flex flex-col">
             <div class="flex items-center justify-between w-full">
               <div class="flex items-center gap-3">

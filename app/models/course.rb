@@ -12,8 +12,12 @@ class Course < ApplicationRecord
     ["title"]
   end
 
+  def visible_lessons_for(user)
+    user&.teacher? ? lessons.order(start_time: :asc) : lessons.upcoming
+  end
+
   def full?
-    enrollments.confirmed.count >= capacity
+    enrollments.where.not(status: :rejected).count >= capacity
   end
 
   def enrollable?
@@ -22,7 +26,6 @@ class Course < ApplicationRecord
 
   private
   def end_date_after_start_date
-    return if end_date.blank? || start_date.blank?
     errors.add(:end_date, "must be after start date") if end_date < start_date
   end
 end

@@ -9,6 +9,8 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     authorize @course
+
+    @lessons = @course.visible_lessons_for(current_user)
   end
 
   def new
