@@ -25,19 +25,19 @@
   </turbo-frame>
 </div>
 
-<div class="card bg-base-200 p-8 my-8 w-3/5">
+<div class="card bg-base-200 p-8 my-8 w-full">
     <% if @lessons.empty? %>
       <p class="text-center text-2xl">Brak lekcji</p>
     <% else %>
       <h2 class="text-2xl font-semibold">Lekcje</h2>
-      <ul class="list rounded-box shadow-lg max-w-lg bg-base-300 my-3 space-y-2 max-h-96 overflow-y-scroll">
+      <ul class="list rounded-box shadow-lg w-full bg-base-300 my-3 space-y-2 max-h-96 overflow-y-scroll">
         <% @lessons.each do |lesson| %>
           <li class="list-row items-center w-full flex flex-col">
             <div class="flex items-center justify-between w-full">
               <div class="flex items-center gap-3">
-                <p><%= lesson.title %></p>
+                <p><%= lesson.title %></p> &bull;
                 <small>
-                  <%= lesson.description %>
+                  <%= truncate(lesson.description, length: 80) %>
                 </small>
               </div>
               <div class="flex gap-3">
