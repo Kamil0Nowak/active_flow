@@ -1,0 +1,52 @@
+<h1 class="text-2xl font-bold my-8">Zarządzanie zapisami: <%= @course.title %></h1>
+
+<div class="grid grid-cols-1 gap-4 my-8">
+  <% @course.lessons.each do |lesson| %>
+    <div class="card bg-base-200 shadow-md">
+      <div class="card-body">
+        <h3 class="card-title"><%= lesson.title %></h3>
+        <p><%= lesson.description %></p>
+
+        <% if lesson.enrollments.any? %>
+          <table class="table w-full">
+            <thead>
+            <tr>
+              <th>Uczeń</th>
+              <th>Status</th>
+              <th>Akcje</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% lesson.enrollments.each do |enrollment| %>
+              <tr>
+                <td><%= enrollment.user.email %></td>
+                <td>
+                    <span class="badge badge-<%= enrollment.status == 'pending' ? 'warning' : enrollment.status == 'confirmed' ? 'success' : 'error' %>">
+                      <%= enrollment.status.humanize %>
+                    </span>
+                </td>
+                <td class="flex gap-2">
+                  <% if enrollment.pending? %>
+                    <%= button_to "Potwierdź uczestnictwo",
+                                  course_lesson_enrollment_path(lesson.course, lesson, enrollment, status: :confirmed),
+                                  method: :patch,
+                                  class: "btn btn-success btn-xs" %>
+                    <%= button_to "Nieobecny",
+                                  course_lesson_enrollment_path(lesson.course, lesson, enrollment, status: :rejected),
+                                  method: :patch,
+                                  class: "btn btn-error btn-xs" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p class="text-gray-500">Brak zapisów na tę lekcję.</p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Powrót do kursu", course_path(@course), class: "btn btn-outline" %>

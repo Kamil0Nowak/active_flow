@@ -6,4 +6,9 @@ class EnrollmentPolicy < ApplicationPolicy
   def destroy?
     user.present? && (user == record.user || user.admin?)
   end
+
+  def update?
+    user.present? && (user.teacher? || user.admin?)
+  end
+
 end

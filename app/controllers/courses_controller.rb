@@ -48,6 +48,11 @@ class CoursesController < ApplicationController
     redirect_to courses_path, notice: "Course was successfully destroyed."
   end
 
+  def manage_enrollments
+    @course = Course.find(params[:id])
+    authorize @course, :manage_enrollments?
+  end
+
   private
   def course_params
     params.require(:course).permit(:title, :description, :start_date, :end_date, :capacity)

@@ -2,7 +2,9 @@
             new_course_lesson_path(@course),
             class: "btn btn-primary mt-3",
             data: { turbo_frame: "new_lesson" } if policy(@course).new?%>
-
+<% if policy(@course).manage_enrollments? %>
+  <%= link_to "Zarządzaj zapisami", manage_enrollments_course_path(@course), class: "btn btn-ghost" %>
+<% end %>
 <div class="card bg-base-200 p-8 mt-8 mx-auto">
   <h1 class="text-4xl font-semibold card-title"><%= @course.title %></h1>
   <div class="card-body">
@@ -39,10 +41,12 @@
                 </small>
               </div>
               <div class="flex gap-3">
-                <% if current_user.present? %>
+                <% if current_user.present? && !current_user.teacher? %>
                   <%= render "enrollments/button", lesson: lesson %>
                 <% else %>
-                  <p class="text-xs text-accent">Zaloguj się, aby zapisać się na lekcję</p>
+                  <% unless current_user.teacher? || current_user.admin? %>
+                    <p class="text-xs text-accent">Zaloguj się, aby zapisać się na lekcję</p>
+                  <% end %>
                 <%  end %>
                   <%=  button_to "Usuń",
                               course_lesson_path(@course, lesson),

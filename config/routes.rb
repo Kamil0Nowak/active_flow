@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :courses do
+    member do
+      get :manage_enrollments
+    end
     resources :lessons, except: [ :index, :show ] do
-      resources :enrollments, only: [ :create, :destroy ]
+      resources :enrollments, only: [ :create, :destroy, :update ]
     end
   end
   devise_for :users

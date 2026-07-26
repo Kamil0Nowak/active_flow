@@ -23,6 +23,10 @@ class CoursePolicy < ApplicationPolicy
     update?
   end
 
+  def manage_enrollments?
+    update?
+  end
+
   class Scope < Scope
     def resolve
       if user&.teacher?

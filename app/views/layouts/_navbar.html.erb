@@ -11,7 +11,6 @@
       </small>
       <%= link_to "New course", new_course_path, class: "btn btn-primary btn-sm" if policy(Course).new? %>
       <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-error btn-outline btn-sm" %>
-      <%#= link_to "Profile", edit_user_registration_path, class: "btn btn-primary btn-sm" %>
     </div>
     <% else %>
       <%= link_to "Log in", new_user_session_path, class: "btn btn-primary btn-sm" %>
