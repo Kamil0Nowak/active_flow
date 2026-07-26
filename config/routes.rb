@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :courses do
-    resources :lessons, except: [ :index, :show ]
+    resources :lessons, except: [ :index, :show ] do
+      resources :enrollments, only: [ :create, :destroy ]
+    end
   end
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
