@@ -1,24 +1,66 @@
-# README
+# Active Flow - Course Management System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Active Flow is a modern web application built with Ruby on Rails 8, designed to manage educational courses and lessons. It features a robust enrollment system, role-based access control, and a responsive UI powered by Hotwire and Tailwind CSS.
 
-Things you may want to cover:
+## Key Features
 
-* Ruby version
+-   **User Authentication**: Secure sign-up and login system using `Devise`.
+-   **Role-Based Access Control (RBAC)**: Different permissions for `Students`, `Teachers`, and `Admins` powered by `Pundit`.
+-   **Course & Lesson Management**: Full CRUD for courses and nested lessons.
+-   **Enrollment System**: Students can enroll in specific lessons with capacity limits and status tracking (pending/confirmed).
+-   **Advanced Search & Filtering**: Easy course discovery using `Ransack`.
+-   **Modern Frontend**: Fast, SPA-like user experience using `Hotwire (Turbo)` and `Stimulus`.
+-   **Responsive Design**: Built with `Tailwind CSS` and `DaisyUI` for a polished look.
 
-* System dependencies
+## Tech Stack
 
-* Configuration
+-   **Backend**: Ruby 4.x, Rails 8.x
+-   **Database**: SQLite (Simplicitly)
+-   **Authentication**: Devise
+-   **Authorization**: Pundit
+-   **Frontend**: Hotwire (Turbo & Stimulus), Tailwind CSS, DaisyUI
+-   **Pagination**: Kaminari
+-   **Search**: Ransack
 
-* Database creation
+## Installation & Setup
 
-* Database initialization
+Follow these steps to get the project running locally:
 
-* How to run the test suite
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/active_flow.git
+    cd active_flow
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+2.  **Install dependencies:**
+    ```bash
+    bundle install
+    yarn install
+    ```
 
-* Deployment instructions
+3.  **Setup the database:**
+    ```bash
+    rails db:setup
+    ```
 
-* ...
+4.  **Start the development server:**
+    ```bash
+    bin/dev
+    ```
+    Go to `http://localhost:3000` to see the app in action.
+
+## 👥 User Roles
+
+-   **Admin**: Full control over all courses, lessons, and user enrollments.
+-   **Teacher**: Can create and manage their own courses and lessons. Can confirm or reject student enrollments.
+-   **Student**: Can browse published courses and enroll in lessons (within capacity limits).
+
+## 💡 Future Roadmap (Junior++ Enhancements)
+
+-   [ ] **Service Objects**: Moving business logic for enrollments to dedicated services.
+-   [ ] **Automated Testing**: Implementing RSpec for models, services, and system flows.
+-   [ ] **Real-time Updates**: Using Turbo Streams to update course capacity in real-time.
+-   [ ] **Background Jobs**: Asynchronous email notifications for enrollment status changes.
+
+---
+Developed as a portfolio project. Feel free to ask a question or request a feature.
