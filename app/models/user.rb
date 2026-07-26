@@ -12,6 +12,13 @@ class User < ApplicationRecord
   has_many :enrollments
   has_many :lessons, through: :enrollments
 
+  def enrolled_in_lesson?(lesson)
+    enrollments.exists?(lesson_id: lesson.id)
+  end
+
+  def enrollment_for_lesson(lesson)
+    enrollments.find_by(lesson_id: lesson.id)
+  end
   def full_name
     "#{first_name} #{last_name}"
   end

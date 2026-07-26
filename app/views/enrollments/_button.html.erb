@@ -1,0 +1,8 @@
+<%= turbo_frame_tag dom_id(lesson, :enrollment_button) do %>
+  <% if current_user.enrolled_in_lesson?(lesson) %>
+    <% enrollment = current_user.enrollment_for_lesson(lesson) %>
+    <%= button_to "Wypisz się", course_lesson_enrollment_path(lesson.course, lesson, enrollment), method: :delete, class: "btn btn-secondary" %>
+    <% else %>
+    <%= button_to "Zapisz się", course_lesson_enrollments_path(lesson.course, lesson), class: "btn btn-primary" %>
+  <% end %>
+<% end %>

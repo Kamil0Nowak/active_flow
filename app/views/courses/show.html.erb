@@ -40,7 +40,7 @@
               </div>
               <div class="flex gap-3">
                 <% if current_user.present? %>
-                  <%=  button_to "Zapisz się", '#', class: "btn btn-primary" if policy(Enrollment).create?   %>
+                  <%= render "enrollments/button", lesson: lesson %>
                 <% else %>
                   <p class="text-xs text-accent">Zaloguj się, aby zapisać się na lekcję</p>
                 <%  end %>

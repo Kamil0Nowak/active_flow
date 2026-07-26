@@ -8,16 +8,19 @@ class EnrollmentsController < ApplicationController
     authorize @enrollment
 
     if @enrollment.save
-      redirect_to course_path(@lesson.course), notice: "Zapisano na lekcję!"
+      # redirect_to course_path(@lesson.course), notice: "Zapisano na lekcję!"
+      render partial: "enrollments/button", locals: { lesson: @lesson }
     else
-      redirect_to course_path(@lesson.course), alert: "Nie udało się zapisać: #{@enrollment.errors.full_messages.join(', ')}"
+      # redirect_to course_path(@lesson.course), alert: "Nie udało się zapisać: #{@enrollment.errors.full_messages.join(', ')}"
+      render partial: "enrollments/button", locals: { lesson: @lesson }
     end
   end
 
   def destroy
     authorize @enrollment
     @enrollment.destroy
-    redirect_to course_path(@lesson.course), notice: "Anulowano zapis."
+    @lesson = @enrollment.lesson
+    render partial: "enrollments/button", locals: { lesson: @lesson }
   end
 
   private
@@ -27,6 +30,6 @@ class EnrollmentsController < ApplicationController
   end
 
   def set_enrollment
-    @enrollment = Enrollment.find(params[:id])
+    @enrollment = current_user.enrollments.find(params[:id])
   end
 end
