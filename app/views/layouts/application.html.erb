@@ -25,6 +25,9 @@
 
   <body class="min-h-screen">
     <%= render "layouts/navbar" %>
+    <div id="toast_container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none">
+      <%= render "shared/flash" %>
+    </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <%= yield %>
     </div>
