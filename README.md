@@ -1,3 +1,10 @@
+<img width="1914" height="927" alt="Home" src="https://github.com/user-attachments/assets/32d16296-f9f2-404a-8335-d6579619eb6b" />
+<img width="1914" height="927" alt="Create_course" src="https://github.com/user-attachments/assets/f532fc03-b235-46ba-9451-f90477843c19" />
+<img width="1919" height="989" alt="student_view" src="https://github.com/user-attachments/assets/47d5afb7-d17d-4478-bb50-501b3ee3e04d" />
+<img width="1900" height="989" alt="manage_page" src="https://github.com/user-attachments/assets/1ea561b7-5229-4472-a125-6a3664cd069a" />
+<img width="1905" height="989" alt="edit_view" src="https://github.com/user-attachments/assets/289b7fc5-0948-4bf8-8dcc-b345cce74092" />
+<img width="1913" height="990" alt="Teacher_course_page" src="https://github.com/user-attachments/assets/0dad4d57-f4cd-4446-82ef-7a17738c2010" />
+
 # Active Flow - Course Management System
 
 Active Flow is a modern web application built with Ruby on Rails 8, designed to manage educational courses and lessons. It features a robust enrollment system, role-based access control, and a responsive UI powered by Hotwire and Tailwind CSS.
