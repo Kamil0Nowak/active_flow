@@ -9,7 +9,7 @@
   <h1 class="text-4xl font-semibold card-title"><%= @course.title %></h1>
   <div class="card-body">
     <p><span class="font-semibold"> Opis: </span> <%= @course.description %></p>
-    <p><span class="font-semibold"> Ilość miejsc: </span> <%= @course.capacity %></p>
+    <p><span class="font-semibold"> Ilość miejsc: </span> <%= @course.actual_capacity %></p>
     <p><span class="font-semibold"> Nauczyciel: </span> <%= @course.teacher.full_name %></p>
     <p><span class="font-semibold"> Kurs w dniach: </span> <%= @course.start_date %> &bull; <%= @course.end_date %></p>
   </div>
@@ -58,11 +58,11 @@
                             data: { turbo_frame: "new_lesson" },
                             class: "btn btn-primary" if policy(lesson).edit? %>
                 </div>
-                  </div>
+              </div>
                 <p class="p-4">Godzina: <%=  lesson.start_time.strftime("%H:%M")  %>
                   : <%=  lesson.end_time.strftime("%H:%M")  %></p>
                 </li>
-                <%  end %>
+        <%  end %>
     </ul>
   <% end %>
 
