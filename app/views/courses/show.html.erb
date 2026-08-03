@@ -30,39 +30,8 @@
       <p class="text-center text-2xl">Brak lekcji</p>
     <% else %>
       <h2 class="text-2xl font-semibold">Lekcje</h2>
-      <ul class="list rounded-box shadow-lg w-full bg-base-300 my-3 space-y-2 max-h-96 overflow-y-scroll">
-        <% @lessons.each do |lesson| %>
-          <li class="list-row items-center w-full flex flex-col">
-            <div class="flex items-center justify-between w-full">
-              <div class="flex items-center gap-3">
-                <p><%= lesson.title %></p> &bull;
-                <small>
-                  <%= truncate(lesson.description, length: 80) %>
-                </small>
-              </div>
-              <div class="flex gap-3">
-                <% if current_user.present? && !current_user.teacher? %>
-                  <%= render "enrollments/button", lesson: lesson %>
-                <% else %>
-                  <% unless current_user&.teacher? || current_user&.admin? %>
-                    <p class="text-xs text-accent">Zaloguj się, aby zapisać się na lekcję</p>
-                  <% end %>
-                <%  end %>
-                  <%=  button_to "Usuń",
-                              course_lesson_path(@course, lesson),
-                              method: :delete,
-                              data: { turbo_confirm: "Are you sure?" },
-                              class: "btn btn-secondary" if policy(lesson).destroy?  %>
-                <%= link_to "Edytuj",
-                            edit_course_lesson_path(@course, lesson),
-                            data: { turbo_frame: "new_lesson" },
-                            class: "btn btn-primary" if policy(lesson).edit? %>
-                </div>
-              </div>
-                <p class="p-4">Godzina: <%=  lesson.start_time.strftime("%H:%M")  %>
-                  : <%=  lesson.end_time.strftime("%H:%M")  %></p>
-                </li>
-        <%  end %>
+      <ul id="lessons" class="list rounded-box shadow-lg w-full bg-base-300 my-3 space-y-2 max-h-96 overflow-y-scroll">
+        <%= render @lessons %>
     </ul>
   <% end %>
 
