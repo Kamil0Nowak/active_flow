@@ -11,9 +11,11 @@ class LessonsController < ApplicationController
     @lesson = @course.lessons.build(lesson_params)
     authorize @lesson
     if @lesson.save
+      flash.now[:notice] = "Lesson was successfully created."
       render turbo_stream: [
         turbo_stream.prepend("lessons", partial: "lessons/lesson", locals: { lesson: @lesson }),
-        turbo_stream.update("new_lesson", "")
+        turbo_stream.update("new_lesson", ""),
+        turbo_stream.update("toast_container", partial: "shared/flash")
       ]
     else
       render :new, status: :unprocessable_entity
@@ -27,9 +29,11 @@ class LessonsController < ApplicationController
   def update
     authorize @lesson
     if @lesson.update(lesson_params)
+      flash.now[:notice] = "Lesson was successfully updated."
       render turbo_stream: [
         turbo_stream.replace(helpers.dom_id(@lesson), partial: "lessons/lesson", locals: { lesson: @lesson }),
-        turbo_stream.update("new_lesson", "")
+        turbo_stream.update("new_lesson", ""),
+        turbo_stream.update("toast_container", partial: "shared/flash")
       ]
     else
       render :edit, status: :unprocessable_entity

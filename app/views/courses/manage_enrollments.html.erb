@@ -1,13 +1,13 @@
 <h1 class="text-2xl font-bold my-8">Zarządzanie zapisami: <%= @course.title %></h1>
 
 <div class="grid grid-cols-1 gap-4 my-8">
-  <% @course.lessons.each do |lesson| %>
+  <% @lessons.each do |lesson| %>
     <div class="card bg-base-200 shadow-md">
       <div class="card-body">
         <h3 class="card-title"><%= lesson.title %></h3>
         <p><%= lesson.description %></p>
 
-        <% if lesson.enrollments.any? %>
+        <% if lesson.enrollments.present? %>
           <table class="table w-full">
             <thead>
             <tr>
@@ -28,11 +28,11 @@
                 <td class="flex gap-2">
                   <% if enrollment.pending? %>
                     <%= button_to "Potwierdź uczestnictwo",
-                                  course_lesson_enrollment_path(lesson.course, lesson, enrollment, status: :confirmed),
+                                  course_lesson_enrollment_path(@course, lesson, enrollment, status: :confirmed),
                                   method: :patch,
                                   class: "btn btn-success btn-xs" %>
                     <%= button_to "Nieobecny",
-                                  course_lesson_enrollment_path(lesson.course, lesson, enrollment, status: :rejected),
+                                  course_lesson_enrollment_path(@course, lesson, enrollment, status: :rejected),
                                   method: :patch,
                                   class: "btn btn-error btn-xs" %>
                   <% end %>

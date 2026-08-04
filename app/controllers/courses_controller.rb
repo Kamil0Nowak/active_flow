@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy, :manage_enrollments]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_course, only: [ :show, :edit, :update, :destroy ]
+  before_action :authenticate_user!, except: [ :index, :show ]
   def index
     @q = policy_scope(Course).ransack(params[:q])
     @courses = @q.result(distinct: true).page(params[:page]).per(3)
@@ -47,6 +47,8 @@ class CoursesController < ApplicationController
   end
 
   def manage_enrollments
+    @course = Course.find(params[:id])
+    @lessons = @course.lessons.includes(enrollments: :user)
     authorize @course, :manage_enrollments?
   end
 
