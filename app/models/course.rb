@@ -25,7 +25,7 @@ class Course < ApplicationRecord
   end
 
   def actual_capacity
-    capacity - enrollments.where.not(status: :rejected).count
+    capacity - enrollments.where.not(status: :rejected).distinct.count(:user_id)
   end
 
   private
