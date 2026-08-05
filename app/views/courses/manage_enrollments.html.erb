@@ -8,11 +8,11 @@
         <p><%= lesson.description %></p>
 
         <% if lesson.enrollments.present? %>
-          <table class="table w-full">
+          <table class="table w-full max-w-7xl mx-auto">
             <thead>
             <tr>
               <th>Uczeń</th>
-              <th>Status</th>
+              <th class="hidden md:block">Status</th>
               <th>Akcje</th>
             </tr>
             </thead>

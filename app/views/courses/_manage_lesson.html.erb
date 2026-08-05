@@ -1,11 +1,11 @@
 <tr id="enrollment-<%= enrollment.id %>">
   <td><%= enrollment.user.email %></td>
   <td>
-                    <span class="badge badge-<%= enrollment.status == 'pending' ? 'warning' : enrollment.status == 'confirmed' ? 'success' : 'error' %>">
-                      <%= enrollment.status.humanize %>
-                    </span>
+    <span class="badge-<%= enrollment.status == 'pending' ? 'warning' : enrollment.status == 'confirmed' ? 'success' : 'error' %> hidden md:block">
+      <%= enrollment.status.humanize %>
+    </span>
   </td>
-  <td class="flex gap-2">
+  <td class="flex flex-wrap gap-2">
     <% if enrollment.pending? %>
       <%= button_to "Potwierdź uczestnictwo",
                     course_lesson_enrollment_path(@course, lesson, enrollment, status: :confirmed),
