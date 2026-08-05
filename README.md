@@ -1,5 +1,3 @@
-## Currently I'm developing my second project which utilizes more Turbo, you can check my progress <a href="https://github.com/Kamil0Nowak/temu_twitter_rails">Here</a>
-
 <img width="1914" height="927" alt="Home" src="https://github.com/user-attachments/assets/32d16296-f9f2-404a-8335-d6579619eb6b" />
 <img width="1914" height="927" alt="Create_course" src="https://github.com/user-attachments/assets/f532fc03-b235-46ba-9451-f90477843c19" />
 <img width="1919" height="989" alt="student_view" src="https://github.com/user-attachments/assets/47d5afb7-d17d-4478-bb50-501b3ee3e04d" />
@@ -68,7 +66,7 @@ Follow these steps to get the project running locally:
 
 -   [ ] **Service Objects**: Moving business logic for enrollments to dedicated services.
 -   [ ] **Automated Testing**: Implementing RSpec for models, services, and system flows.
--   [ ] **Real-time Updates**: Using Turbo Streams to update course capacity in real-time.
+-   [x] **Real-time Updates**: Using Turbo Streams to update course capacity in real-time.
 -   [ ] **Background Jobs**: Asynchronous email notifications for enrollment status changes.
 
 ---
