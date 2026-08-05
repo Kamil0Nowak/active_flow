@@ -8,9 +8,16 @@ class EnrollmentsController < ApplicationController
     authorize @enrollment
 
     if @enrollment.save
-      render partial: "enrollments/button", locals: { lesson: @lesson }
+      flash.now[:notice] = "Zapisano się na lekcję."
+      render turbo_stream: [
+        turbo_stream.replace(helpers.dom_id(@lesson, :enrollment_button), partial: "enrollments/button", locals: { lesson: @lesson }),
+        turbo_stream.update("toast_container", partial: "shared/flash")
+      ]
     else
-      render partial: "enrollments/button", locals: { lesson: @lesson }
+      flash.now[:alert] = "Nie udało się zapisać na lekcję."
+      render turbo_stream: [
+        turbo_stream.update("toast_container", partial: "shared/flash")
+      ]
     end
   end
 
@@ -19,15 +26,25 @@ class EnrollmentsController < ApplicationController
     authorize @enrollment
     @enrollment.destroy
     @lesson = @enrollment.lesson
-    render partial: "enrollments/button", locals: { lesson: @lesson }
+
+    flash.now[:notice] = "Usunięto zapis na lekcję."
+    render turbo_stream: [
+      turbo_stream.replace(helpers.dom_id(@lesson, :enrollment_button), partial: "enrollments/button", locals: { lesson: @lesson }),
+      turbo_stream.update("toast_container", partial: "shared/flash")
+    ]
   end
 
   def update
     authorize @enrollment
     if @enrollment.update(enrollment_params)
-      redirect_to manage_enrollments_course_path(@enrollment.lesson.course), notice: "Status zapisu zaktualizowany."
+      flash.now[:notice] = "Status zmieniony."
+      render turbo_stream: [
+        turbo_stream.replace("enrollment-#{@enrollment.id}", partial: "courses/manage_lesson", locals: { enrollment: @enrollment }),
+        turbo_stream.update("toast_container", partial: "shared/flash")
+      ]
     else
-      redirect_to manage_enrollments_course_path(@enrollment.lesson.course), alert: "Nie udało się zmienić statusu."
+      flash.now[:notice] = "Status zmieniony."
+      render turbo_stream: turbo_stream.update("toast_container", partial: "shared/flash")
     end
   end
 

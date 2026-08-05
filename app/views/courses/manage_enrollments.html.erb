@@ -18,26 +18,7 @@
             </thead>
             <tbody>
             <% lesson.enrollments.each do |enrollment| %>
-              <tr>
-                <td><%= enrollment.user.email %></td>
-                <td>
-                    <span class="badge badge-<%= enrollment.status == 'pending' ? 'warning' : enrollment.status == 'confirmed' ? 'success' : 'error' %>">
-                      <%= enrollment.status.humanize %>
-                    </span>
-                </td>
-                <td class="flex gap-2">
-                  <% if enrollment.pending? %>
-                    <%= button_to "Potwierdź uczestnictwo",
-                                  course_lesson_enrollment_path(@course, lesson, enrollment, status: :confirmed),
-                                  method: :patch,
-                                  class: "btn btn-success btn-xs" %>
-                    <%= button_to "Nieobecny",
-                                  course_lesson_enrollment_path(@course, lesson, enrollment, status: :rejected),
-                                  method: :patch,
-                                  class: "btn btn-error btn-xs" %>
-                  <% end %>
-                </td>
-              </tr>
+             <%= render "manage_lesson", enrollment: enrollment, lesson: lesson %>
             <% end %>
             </tbody>
           </table>
