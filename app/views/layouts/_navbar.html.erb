@@ -1,7 +1,6 @@
 <nav class="navbar bg-base-300 shadow-lg px-8">
   <div class="flex-1">
     <%= link_to "ActiveFlow", root_path, class: "btn btn-ghost normal-case text-xl" %>
-    <%= link_to "My Courses", my_courses_path, class: "btn btn-ghost normal-case text-xl" if user_signed_in? && current_user.student? %>
   </div>
   <div class="flex-none">
     <% if user_signed_in? %>
@@ -10,6 +9,7 @@
         <span class="text-gray-600">(<%= current_user.role %>)</span>
         <%= current_user.email %>
       </small>
+      <%= link_to "Moje kursy", my_courses_path, class: "btn btn-primary btn-sm normal-case text-xl" if user_signed_in? && current_user.student? %>
       <%= link_to "New course", new_course_path, class: "btn btn-primary btn-sm" if policy(Course).new? %>
       <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-error btn-outline btn-sm" %>
     </div>
