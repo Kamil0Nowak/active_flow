@@ -6,7 +6,14 @@
         <h2 class="font-semibold text-2xl"> <%= course.title %> </h2>
         <ul class="card-body bg-base-200">
           <% course.lessons.each do |lesson| %>
-          <li> <%= lesson.title %> </li>
+          <li class="grid grid-cols-2 gap-4">
+            <p><%= lesson.title %></p>
+            <% if current_user.enrolled_in_lesson?(lesson) %>
+              <p class="text-green-300 text-sm">Zapisany</p>
+              <% else %>
+            <%= link_to "Zapisz się", course_path(course), class:"text-red-300 text-sm"  %>
+            <% end %>
+          </li>
           <% end %>
         </ul>
       <% end %>
