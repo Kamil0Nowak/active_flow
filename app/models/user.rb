@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :courses, foreign_key: :teacher_id
   has_many :enrollments
   has_many :lessons, through: :enrollments
-  has_many :enrolled_courses, through: :lessons, source: :course
+  has_many :enrolled_courses, -> { distinct }, through: :lessons, source: :course
 
   def enrolled_in_lesson?(lesson)
     enrollments.exists?(lesson_id: lesson.id)
