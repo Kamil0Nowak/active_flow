@@ -24,6 +24,15 @@ class EnrollmentsController < ApplicationController
   def destroy
     @enrollment = current_user.enrollments.find(params[:id])
     authorize @enrollment
+
+    if @enrollment.confirmed?
+      flash.now[:alert] = "Nie można cofnąć zapisu na lekcję."
+      render turbo_stream: [
+        turbo_stream.update("toast_container", partial: "shared/flash")
+      ]
+      return
+    end
+
     @enrollment.destroy
     @lesson = @enrollment.lesson
 
