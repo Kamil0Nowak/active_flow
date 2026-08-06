@@ -9,9 +9,9 @@
           <li class="grid grid-cols-2 gap-4 space-y-4">
             <p><%= lesson.title %></p>
             <% if current_user.enrolled_in_lesson?(lesson) %>
-              <p class="text-green-300 text-sm">Zapisany</p>
+              <%= link_to "Zapisany", course_path(course), class:"text-green-300 text-sm hover:underline" %>
               <% else %>
-            <%= link_to "Zapisz się", course_path(course), class:"text-red-300 text-sm"  %>
+            <%= link_to "Zapisz się", course_path(course), class:"text-red-300 text-sm hover:underline"  %>
             <% end %>
           </li>
           <% end %>
