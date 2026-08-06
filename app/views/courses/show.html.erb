@@ -30,6 +30,7 @@
       <p class="text-center text-2xl">Brak lekcji</p>
     <% else %>
       <h2 class="text-2xl font-semibold">Lekcje</h2>
+      <%= button_to "Zapisz się na wszystkie lekcje", enroll_to_all_course_path, class: "btn btn-primary mt-3" %>
       <ul id="lessons" class="list rounded-box shadow-lg w-full bg-base-300 my-3 space-y-2 max-h-96 overflow-y-scroll">
         <%= render @lessons %>
     </ul>

@@ -1,6 +1,7 @@
 <nav class="navbar bg-base-300 shadow-lg px-8">
   <div class="flex-1">
-   <%= link_to "ActiveFlow", root_path, class: "btn btn-ghost normal-case text-xl" %>
+    <%= link_to "ActiveFlow", root_path, class: "btn btn-ghost normal-case text-xl" %>
+    <%= link_to "My Courses", my_courses_path, class: "btn btn-ghost normal-case text-xl" %>
   </div>
   <div class="flex-none">
     <% if user_signed_in? %>

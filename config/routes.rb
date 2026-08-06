@@ -2,11 +2,13 @@ Rails.application.routes.draw do
   resources :courses do
     member do
       get :manage_enrollments
+      post :enroll_to_all
     end
     resources :lessons, except: [ :index, :show ] do
       resources :enrollments, only: [ :create, :destroy, :update ]
     end
   end
+  get 'my_courses', to: 'courses#my_courses'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

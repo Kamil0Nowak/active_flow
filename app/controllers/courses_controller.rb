@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_course, only: [ :show, :edit, :update, :destroy, :enroll_to_all ]
   before_action :authenticate_user!, except: [ :index, :show ]
   def index
     @q = policy_scope(Course).ransack(params[:q])
@@ -50,6 +50,21 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @lessons = @course.lessons.includes(enrollments: :user)
     authorize @course, :manage_enrollments?
+  end
+
+  def enroll_to_all
+    @lessons = @course.lessons
+
+    @enrollments = @lessons.map do |lesson|
+      lesson.enrollments.build(user: current_user)
+      lesson.save # think about it
+    end
+    redirect_to course_path(@course), notice: "Zapisano się na wszystkie lekcje."
+
+  end
+
+  def my_courses
+    @courses = current_user.courses.includes(:lessons)
   end
 
   private
