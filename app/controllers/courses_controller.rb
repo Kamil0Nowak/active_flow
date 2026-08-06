@@ -64,7 +64,8 @@ class CoursesController < ApplicationController
   end
 
   def my_courses
-    @courses = current_user.courses.includes(:lessons)
+    @courses = current_user.enrolled_courses.includes(:lessons)
+    authorize @courses, :my_courses?
   end
 
   private

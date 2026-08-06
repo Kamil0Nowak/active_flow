@@ -1,13 +1,14 @@
-<h1 class="text-2xl">Moje kursy</h1>
+<h1 class="text-4xl my-6">Moje kursy</h1>
+
 <div class="max-w-7xl mx-auto">
   <div class="card">
-    <% @courses.each do |course| %>
-      <h2> <%= course.title %> </h2>
-      <ul>
-        <% course.lessons.each do |lesson| %>
-        <li> <%= lesson.title %> </li>
-        <% end %>
-      </ul>
-    <% end %>
+      <% @courses.each do |course| %>
+        <h2 class="font-semibold text-2xl"> <%= course.title %> </h2>
+        <ul class="card-body bg-base-200">
+          <% course.lessons.each do |lesson| %>
+          <li> <%= lesson.title %> </li>
+          <% end %>
+        </ul>
+      <% end %>
   </div>
 </div>

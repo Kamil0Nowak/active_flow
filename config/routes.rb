@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :enrollments, only: [ :create, :destroy, :update ]
     end
   end
-  get 'my_courses', to: 'courses#my_courses'
+  get "my_courses", to: "courses#my_courses"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -27,6 +27,10 @@ class CoursePolicy < ApplicationPolicy
     update?
   end
 
+  def my_courses?
+    user.present? && user.student?
+  end
+
   class Scope < Scope
     def resolve
       if user&.teacher?
