@@ -53,14 +53,11 @@ class CoursesController < ApplicationController
   end
 
   def enroll_to_all
-    @lessons = @course.lessons
-
-    @enrollments = @lessons.map do |lesson|
-      lesson.enrollments.build(user: current_user)
-      lesson.save # think about it
+    @course.lessons.each do |lesson|
+      Enrollment.find_or_create_by(user: current_user, lesson: lesson)
     end
-    redirect_to course_path(@course), notice: "Zapisano się na wszystkie lekcje."
 
+    redirect_to course_path(@course), notice: "Zapisano się na wszystkie lekcje."
   end
 
   def my_courses
